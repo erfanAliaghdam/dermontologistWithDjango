@@ -130,54 +130,9 @@
 
     }
     
-    function sendForm(){
-        var img = new FormData($('#file-upload').get(0));
-        const token  = Cookies.get('csrftoken');
-        $.ajax({
-          headers: { "X-CSRFToken": token },
-          type:"POST",
-          url: "{% url 'predict' %}",
-          data:{
-          'image':img,
-          },
-          processData: false,
-          contentType: false,
-          success: function(data){
-            console.log(data);
-          }
-        })
-
-    }
-  
+ 
   </script>
-  <script>
-    $(document).ready(function() {
-        $('#subBtn').on('click', function(e) {
-            var img = $('#file-upload')[0].files;
-            var fd = new FormData();
-            const token  = Cookies.get('csrftoken');
+ 
 
-            if(img.length > 0 ){
-              fd.append('img',img[0]);
-              fd.append('csrfmiddlewaretoken', token);
-            }
-            $.ajax({
-              headers: { "X-CSRFToken": token },
-                type:"POST",
-                url: "{% url 'predict' %}",
-                data: fd,
-                processData: false,
-                contentType: false,
-                success: function(data) {
-                  console.log('ok ...');
-                  toggleModal();
-
-                }
-            });
-            return false;
-        });
-    });
-
-</script>
 
 </html>
